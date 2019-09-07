@@ -1,25 +1,41 @@
 function search_ML() { 
     let input = document.getElementById('searchbar').value 
     
-    // input=input.toLowerCase(); 
+    const app = document.getElementById('root');
+    const logo = document.createElement('img');
     
-    var request = new XMLHttpRequest();
-    request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
-    request.onload = function () {
+    const container = document.createElement('div');
+    container.setAttribute('class', 'container');
+    
+    app.appendChild(logo);
+    app.appendChild(container);
 
-        // Begin accessing JSON data here
-        var data = JSON.parse(this.response);
+    var path = 'https://api.mercadolibre.com/sites/MLA/search?q=';
+    //var path = 'https://ghibliapi.herokuapp.com/films';
+
+    var request = new XMLHttpRequest();
+    request.open('GET', path.concat(input), true);
+
+    request.onload = function () {
+//      var data = JSON.parse(this.response);
+      var data = JSON.parse(this.response || '{}');
+    
+      // const errorMessage = document.createElement('marquee');
+      // errorMessage.textContent = this.responseText;
+      // app.appendChild(errorMessage);  
+  
+      // console.log(data);
+      
         if (request.status >= 200 && request.status < 400) {
-          data.forEach(movie => {
+          data.results.slice(0, 4).forEach(articulo => {
             const card = document.createElement('div');
             card.setAttribute('class', 'card');
       
             const h1 = document.createElement('h1');
-            h1.textContent = movie.title;
+            h1.textContent = articulo.title;
       
             const p = document.createElement('p');
-            movie.description = movie.description.substring(0, 300);
-            p.textContent = `${movie.description}...`;
+            p.textContent = `$ ${articulo.seller.id}`;
       
             container.appendChild(card);
             card.appendChild(h1);
@@ -27,25 +43,10 @@ function search_ML() {
           });
         } else {
           const errorMessage = document.createElement('marquee');
-          errorMessage.textContent = `Gah, it's not working!`;
+          errorMessage.textContent = 'No funciona';
           app.appendChild(errorMessage);
         }
       }
 
       request.send();
-
-    // https://api.mercadolibre.com/sites/MLA/search?q= :query
-
-
-
-	// let x = document.getElementsByClassName('products'); 
-	
-	// for (i = 0; i < x.length; i++) { 
-	// 	if (!x[i].innerHTML.toLowerCase().includes(input)) { 
-	// 		x[i].style.display="none"; 
-	// 	} 
-	// 	else { 
-	// 		x[i].style.display="list-item";				 
-	// 	} 
-	// } 
 } 
