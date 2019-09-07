@@ -1,0 +1,111 @@
+#main-header {
+	background: #FFE600;
+	color: white;
+    height: 70px;
+	width: 100%; 
+	left: 0; 
+	top: 0; 
+	position: fixed; 
+}
+
+#searchbar{ 
+	margin-left: 0%; 
+    margin-top: 1%; 
+    height: 22px;
+    width: 555px; 
+    padding: 5px; 
+    position: fixed; 
+    font-size: 18px;
+} 
+
+#image_logo{ 
+	margin-left: 10%; 
+    padding:15px; 
+} 
+
+#submit img {
+    height: 28px;  
+    width: 28px;
+    margin-top: 3px;
+    margin-left: 3px;
+    align-content: center;
+}
+
+#list { 
+    font-size:  1.5em; 
+    margin-left: 90px; 
+    margin-top: 80px;
+} 
+
+input::placeholder{
+    color: #999999;
+}
+
+input {
+    color: #333333;
+}
+
+button {
+    display: inline-block;
+    height: 36px;
+    padding: 0;
+    margin-top: 1%;
+    vertical-align: top;
+    width: 36px;
+	  margin-left: 41%; 
+	  position: fixed; 
+}
+
+body {
+    background: #EEEEEE;    
+}
+
+.products{ 
+    display: list-item;     
+}  
+
+
+
+
+   .container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    margin: 1rem;
+    background: white;
+    box-shadow: 2px 4px 25px rgba(0, 0, 0, .1);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all .2s linear;
+  }
+  
+  .card:hover {
+    box-shadow: 2px 8px 45px rgba(0, 0, 0, .15);
+    transform: translate3D(0, -2px, 0);
+  }
+  
+  @media screen and (min-width: 600px) {
+    .card {
+      flex: 1 1 calc(50% - 2rem);
+    }
+  }
+  
+  @media screen and (min-width: 900px) {
+    .card {
+      flex: 1 1 calc(33% - 2rem);
+    }
+  }
+  
+  .card:nth-child(2n) h1 {
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  }
+  
+  .card:nth-child(4n) h1 {
+    background-image: linear-gradient(120deg, #ff9a9e 0%, #fecfef 100%);
+  }
+  
+  .card:nth-child(5n) h1 {
+    background-image: linear-gradient(120deg, #ffc3a0 0%, #ffafbd 100%);
+  }
