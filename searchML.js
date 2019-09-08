@@ -1,8 +1,10 @@
 function search_ML() { 
-    let input = document.getElementById('searchbar').value 
+    let input = document.getElementById('searchbar').value; 
     
     const app = document.getElementById('root');
     const logo = document.createElement('img');
+    
+    const table = document.getElementById("tablecreate");
     
     const container = document.createElement('div');
     container.setAttribute('class', 'container');
@@ -11,7 +13,6 @@ function search_ML() {
     app.appendChild(container);
 
     var path = 'https://api.mercadolibre.com/sites/MLA/search?q=';
-    //var path = 'https://ghibliapi.herokuapp.com/films';
 
     var request = new XMLHttpRequest();
     request.open('GET', path.concat(input), true);
@@ -20,7 +21,7 @@ function search_ML() {
 //      var data = JSON.parse(this.response);
       var data = JSON.parse(this.response || '{}');
     
-      // const errorMessage = document.createElement('marquee');
+      // const errorMessage = document.createElement('');
       // errorMessage.textContent = this.responseText;
       // app.appendChild(errorMessage);  
   
@@ -36,13 +37,53 @@ function search_ML() {
       
             const p = document.createElement('p');
             p.textContent = `$ ${articulo.seller.id}`;
-      
-            container.appendChild(card);
-            card.appendChild(h1);
-            card.appendChild(p);
+             
+            var row = table.insertRow(0); 
+            var cell1 = row.insertCell(0); 
+            var cell2 = row.insertCell(1); 
+            var cell3 = row.insertCell(2); 
+
+            // La imagen que me trae el JSON es muy pequeña, intento traerla de otro recurso
+            // var pathRequestImage = 'https://api.mercadolibre.com/items/';
+            // var requestImage = new XMLHttpRequest();
+            // requestImage.open('GET', pathRequestImage.concat(articulo.id), true);
+
+            // requestImage.onload = function () {
+            //   var dataImage = JSON.parse(this.response || '{}');
+
+            //     dataImage.pictures.slice(0, 1).forEach(articuloImagen => {
+     
+            //       // El link es temporal a la web de Mercado Libre hasta tener la propia página de producto
+            //       cell1.innerHTML = "<a href= '" + articulo.permalink + "'><img id='tableimage' src='" + articuloImagen.url + "'></img></a>";
+            //     }
+            // }
+            // requestImage.send();
+
+            // El link es temporal a la web de Mercado Libre hasta tener la propia página de producto
+            cell1.innerHTML = "<a href= '" + articulo.permalink + "'><img id='tableimage' src='" + articulo.thumbnail + "'></img></a>";
+
+            // En la búsqueda de Mercado Libre no muestra la descripción completa, asi que la trunco
+            articulo.title = articulo.title.substring(0, 60);
+
+            cell2.innerHTML = "<div id='tableprice'>$ " + articulo.price + "</div>";
+            
+            // Evalúo el envío gratis
+            if (articulo.shipping.free_shipping) {
+              cell2.innerHTML = cell2.innerHTML + "<img src='Assets/ic_shipping.png'></img>";
+            }
+            
+            cell2.innerHTML = cell2.innerHTML +
+                              "<div height=32px> </div>" +
+                              "<div id='tabletitle'>" + `${articulo.title}...` + "</div>";
+
+            cell3.innerHTML = "<div id='tableaddress'>" + articulo.address.city_name + "</div>";
+
+            // container.appendChild(card);
+            // card.appendChild(h1);
+            // card.appendChild(p);
           });
         } else {
-          const errorMessage = document.createElement('marquee');
+          const errorMessage = document.createElement('');
           errorMessage.textContent = 'No funciona';
           app.appendChild(errorMessage);
         }

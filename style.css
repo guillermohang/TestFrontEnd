@@ -23,12 +23,43 @@
     padding:15px; 
 } 
 
-#submit img {
+#submitButton img {
     height: 28px;  
     width: 28px;
     margin-top: 3px;
     margin-left: 3px;
     align-content: center;
+}
+
+#tablecreate {
+    margin-top: 5%; 
+    width: 80%;
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+#tableimage {
+    height: 180px;
+    width: 180px;
+}
+
+#tableprice {
+    font-family: 'Proxima Nova';
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+}
+
+#tabletitle {
+    font-family: 'Proxima Nova';
+    font-size: 18px;
+    color: #666666;
+}
+
+#tableaddress {
+    font-family: 'Proxima Nova';
+    font-size: 12px;
+    color: #999999;
 }
 
 #list { 
@@ -67,3 +98,15 @@ body {
     position: relative; 
     background: white;
   }
+
+  @font-face {
+	font-family: 'Proxima Nova';
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+	src: url('https://http2.mlstatic.com/ui/webfonts/v4.0.0/proxima-nova/proxima-nova-300.eot');
+	src: url('https://http2.mlstatic.com/ui/webfonts/v4.0.0/proxima-nova/proxima-nova-300.eot?#iefix') format('embedded-opentype'),
+		url('https://http2.mlstatic.com/ui/webfonts/v4.0.0/proxima-nova/proxima-nova-300.woff2') format('woff2'),
+		url('https://http2.mlstatic.com/ui/webfonts/v4.0.0/proxima-nova/proxima-nova-300.woff') format('woff'),
+		url('https://http2.mlstatic.com/ui/webfonts/v4.0.0/proxima-nova/proxima-nova-300.ttf') format('truetype');
+}
