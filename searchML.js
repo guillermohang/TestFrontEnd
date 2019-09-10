@@ -1,15 +1,9 @@
 function search_ML(searchText) {
     if (searchText != null && searchText != '') {
-        const app = document.getElementById('root');
-        const logo = document.createElement('img');
-
         const table = document.getElementById("tablecreate");
 
         const container = document.createElement('div');
         container.setAttribute('class', 'container');
-
-        app.appendChild(logo);
-        app.appendChild(container);
 
         var path = 'https://api.mercadolibre.com/sites/MLA/search?q=';
 
@@ -67,7 +61,7 @@ function search_ML(searchText) {
             } else {
                 const errorMessage = document.createElement('');
                 errorMessage.textContent = 'No funciona';
-                app.appendChild(errorMessage);
+                console.log(errorMessage);
             }
         }
 

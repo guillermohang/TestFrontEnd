@@ -1,4 +1,4 @@
-// Función obtenida de https://css-tricks.com/snippets/javascript/get-url-variables/
+// Funciï¿½n obtenida de https://css-tricks.com/snippets/javascript/get-url-variables/
 function getQueryVariable(variable) {
     var query = window.location.search.substring(1);
     var vars = query.split("&");

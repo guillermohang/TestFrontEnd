@@ -139,14 +139,6 @@ body {
     background: #EEEEEE;    
 }
 
-.card {
-    margin: 2rem;
-    border-radius: 5px;
-    overflow: hidden;
-    position: relative; 
-    background: white;
-  }
-
   /* Fuente obtenida de web de Mercado Libre */
   @font-face {
 	font-family: 'Proxima Nova';

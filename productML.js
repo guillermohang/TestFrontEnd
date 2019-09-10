@@ -1,7 +1,4 @@
 function product_ML(productID) { 
-    const app = document.getElementById('root');
-    const logo = document.createElement('img');
-
     const table = document.getElementById("tablecreate");
 
     var path = 'https://api.mercadolibre.com/items/';
@@ -73,7 +70,7 @@ function product_ML(productID) {
         } else {
             const errorMessage = document.createElement('');
             errorMessage.textContent = 'No funciona';
-            app.appendChild(errorMessage);
+            console.log(errorMessage);
         }
     }
 
