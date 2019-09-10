@@ -43,10 +43,34 @@
     width: 180px;
 }
 
+#productimage {
+    height: 400px;
+    width: 400px;
+}
+
 #tableprice {
     font-family: 'Proxima Nova';
     font-size: 24px;
     font-weight: bold;
+    color: #333333;
+}
+
+#tablecondition {
+    font-family: 'Proxima Nova';
+    font-size: 14px;
+    color: #666666;
+}
+
+#tableconditiontitle {
+    font-family: 'Proxima Nova';
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+}
+
+#tableconditionprice {
+    font-family: 'Proxima Nova';
+    font-size: 46px;
     color: #333333;
 }
 
@@ -56,10 +80,28 @@
     color: #666666;
 }
 
+#tablecategory {
+    font-family: 'Proxima Nova';
+    font-size: 14px;
+    color: #999999;
+}
+
 #tableaddress {
     font-family: 'Proxima Nova';
     font-size: 12px;
     color: #999999;
+}
+
+#descriptiontitle {
+    font-family: 'Proxima Nova';
+    font-size: 28px;
+    color: #333333;
+}
+
+#descriptionbody {
+    font-family: 'Proxima Nova';
+    font-size: 16px;
+    color: #333333;
 }
 
 #list { 

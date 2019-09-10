@@ -13,10 +13,15 @@ function product_ML(productID) {
         var articulo = JSON.parse(this.response || '{}');
 
         if (request.status >= 200 && request.status < 400) {
-            var row = table.insertRow(0);
-            var cell1 = row.insertCell(0);
-            var cell2 = row.insertCell(1);
-            var cell3 = row.insertCell(2);
+            var rowCategory = table.insertRow(0);
+            var cellCategory = rowCategory.insertCell(0);
+
+            var rowProduct = table.insertRow(1);
+            var cellPicture = rowProduct.insertCell(0);
+            var cellCondition =  rowProduct.insertCell(1);
+
+            var rowDesc = table.insertRow(2);
+            var cellDesc = rowDesc.insertCell(0);
 
             // En primer lugar busco la categoría del producto
             var pathRequestCategories = 'https://api.mercadolibre.com/categories/';
@@ -27,51 +32,43 @@ function product_ML(productID) {
                 var dataCategories = JSON.parse(this.response || '{}');
                 var infoCategories = '';
                 for (var i = 0, len = dataCategories.path_from_root.length; i < len; i++) {
-                    infoCategories = infoCategories + dataCategories.path_from_root[i].name + ' - ';
+                    infoCategories = infoCategories + dataCategories.path_from_root[i].name + ' > ';
                 }
 
-                cell1.innerHTML = "<div id='tableprice'>" + infoCategories + "</div>";
+                cellCategory.innerHTML = "<tr><td><p><div id='tablecategory'>" + infoCategories + "</div></p></td></tr>";
             }
             
             requestCategories.send();
 
             // Muestro la primer imagen disponible de todas
-            cell1.innerHTML = "<a href= '" + articulo.permalink + "'><img id='tableimage' src='" + articulo.pictures[0].secure_url + "'></img></a>";
+            cellPicture.innerHTML = "<tr><td><p><img id='productimage' src='" + articulo.pictures[0].secure_url + "'></img></p></td></tr>";
 
-            cell2.innerHTML = "<div id='tableprice'>$ " + articulo.price + "</div>";
+            // Obtengo la condición del producto
+            var infoCondition = '';
+                for (var i = 0, len = articulo.attributes.length; i < len; i++) {
+                  if (articulo.attributes[i].id == "ITEM_CONDITION") {
+                    infoCondition = articulo.attributes[i].value_name;
+                  }
+                }
 
-            // Evalúo el envío gratis
-            if (articulo.shipping.free_shipping) {
-                cell2.innerHTML = cell2.innerHTML + "<img src='Assets/ic_shipping.png'></img>";
-            }
+            cellCondition.innerHTML = "<tr>" + 
+                              "<td><table>" +
+                                "<tr><td><p><div id='tablecondition'>" + infoCondition + " - " + articulo.sold_quantity + " vendidos</div></p></td></tr>" + 
+                                "<tr><td><p><div id='tableconditiontitle'>" + articulo.title + "</div></p></td></tr>" + 
+                                "<tr><td><p><div id='tableconditionprice'>$ " + articulo.price + "</div></p></td></tr>" + 
+                                "<tr><td><p><img src='Assets/ComprarML.jpg'></img></p></td></tr>" + 
+                              "</table></td></tr>"
 
-            cell2.innerHTML = cell2.innerHTML +
-                "<div height=32px> </div>" +
-                "<div id='tabletitle'>" + articulo.title + "</div>";
-
-            cell3.innerHTML = "<div id='tableaddress'>" + articulo.seller_address.city.name + "</div>";
-
-
-//            attributes
-  //          "id": "ITEM_CONDITION",
-    //            "name": "Condición del ítem",
-      //              "value_id": "2230284",
-        //                "value_name": "Nuevo",
-          //                  "value_struct": null,
-            //                    "attribute_group_id": "OTHERS",
-              //                      "attribute_group_name": "Otros"
-        
-        //    sold_quantity
-
-      //      https://api.mercadolibre.com/items/MLA729092667/description
-
-    //        {
-  //              "text": "",
-//                    "plain_text": "Soporte Escritorio Organizador Notebook Monitor Aidata Somos BAZAR LATAM tenemos 100% de Calificaciones Positivas. - Soporte de monitor simple y moderno con plataforma elevada. - Cajón para maximizar el espacio de escritorio y reducir el desorden. - Para monitores de hasta 24 pulgadas, impresoras y otros equipos de oficina. - La ranura frontal sostiene la mayoria de tablets y teléfonos. - Medidas: 55 x 35 x 17,5 cm. - El diseño exclusivo de columbas apilables proporciona un ajuste de altura. - Rango de ajuste de altura: 13 a 17 cm. - Peso máximo: 15 kg. Material: HIPS Peso: 2.26 kg HORARIO DE ATENCION Y ENTREGA: •Lunes a Viernes de 1
-
-
-
-
+            // Obtengo la descripción del producto
+            var pathRequestDescripcion = 'https://api.mercadolibre.com/items/';
+                var requestDescription = new XMLHttpRequest();
+                requestDescription.open('GET', pathRequestDescripcion.concat(articulo.id, "/description"), true);
+                requestDescription.onload = function () {
+                    var dataDescription = JSON.parse(this.response || '{}');
+                    cellDesc.innerHTML = "<tr><td><p><div id='descriptiontitle'>Descripci&oacuten del producto</div></p></td></tr>" + 
+                      "<tr><td><p><div id='descriptionbody'>" + dataDescription.plain_text + "</div></p></td></tr>"
+                }
+                requestDescription.send(); 
 
         } else {
             const errorMessage = document.createElement('');

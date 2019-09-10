@@ -43,7 +43,7 @@ function search_ML() {
                 var cell2 = row.insertCell(1);
                 var cell3 = row.insertCell(2);
 
-                // La imagen que me trae el JSON es muy pequeña, la triago de otro recurso
+                // La imagen que me trae el JSON es muy pequeña, la traigo de otro recurso
                 var pathRequestImage = 'https://api.mercadolibre.com/items/';
                 var requestImage = new XMLHttpRequest();
                 requestImage.open('GET', pathRequestImage.concat(articulo.id), true);
