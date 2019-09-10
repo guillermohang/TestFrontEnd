@@ -6,19 +6,26 @@
 	<link rel="stylesheet" type="text/css" href="./style.css"> 
 </head> 
 
-<body onload="product_ML(getQueryVariable('p'))">
+<body onload="product_ML(getQueryVariable('id'))">
     <header id="main-header">
-        <img id="image_logo" src='Assets/Logo_ML.png'></img>
-        <input id="searchbar" type="text" name="search" placeholder="Nunca dejes de buscar"></input>
-        <button id="submitButton" onClick=""><img src="Assets/ic_Search@2x.png.png" /></button>
+        <div class="searchbar">
+            <div>
+                <div>
+                    <img id="image_logo" src='Assets/Logo_ML.png'></img>
+                    <input id="searchbar" type="text" name="search" placeholder="Nunca dejes de buscar" />
+                    <div><img id="submitButton" onClick="openSearchPage()" src="Assets/ic_Search@2x.png.png" /></div>
+                </div>
+            </div>
+        </div>
     </header>
 
     <div id="root"></div>
 
-    <table id="tablecreate">
-    </table>
+    <table id="tablecreate"></table>
 
     <script src="productML.js"></script>
+    <script src="searchML.js"></script>
+    <script src="Parameters.js"></script>
 
     <script>
         var input = document.getElementById("searchbar");

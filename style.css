@@ -8,32 +8,38 @@
     position: fixed; 
 }
 
-#searchbar{ 
-	margin-left: 0%; 
-    margin-top: 1%; 
-    height: 22px;
-    width: 555px; 
-    padding: 5px; 
-    position: fixed; 
-    font-size: 18px;
-} 
-
 #image_logo{ 
-	margin-left: 10%; 
+	margin-left: 20%; 
     padding:15px; 
-} 
+}
+
+#searchbar {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 22px;
+    padding: 5px;
+    position: fixed;
+    font-size: 18px;
+    top: 15px;
+}
+
+#submitButton {
+    left: 1250px;
+    position: fixed;
+    top: 20px;
+    height: 25px;
+    width: 25px;
+}
 
 #submitButton img {
-    height: 28px;  
+    height: 28px;
     width: 28px;
-    margin-top: 3px;
-    margin-left: 3px;
-    align-content: center;
 }
 
 #tablecreate {
     margin-top: 5%; 
-    width: 80%;
+    width: 1000px;
     margin-left: auto; 
     margin-right: auto;
 }
@@ -141,6 +147,7 @@ body {
     background: white;
   }
 
+  /* Fuente obtenida de web de Mercado Libre */
   @font-face {
 	font-family: 'Proxima Nova';
 	font-weight: 300;

@@ -18,7 +18,9 @@ function product_ML(productID) {
 
             var rowProduct = table.insertRow(1);
             var cellPicture = rowProduct.insertCell(0);
-            var cellCondition =  rowProduct.insertCell(1);
+            var cellCondition = rowProduct.insertCell(1);
+            cellPicture.style.width = '30%';
+            cellCondition.style.width = '70%';
 
             var rowDesc = table.insertRow(2);
             var cellDesc = rowDesc.insertCell(0);
@@ -35,13 +37,13 @@ function product_ML(productID) {
                     infoCategories = infoCategories + dataCategories.path_from_root[i].name + ' > ';
                 }
 
-                cellCategory.innerHTML = "<tr><td><p><div id='tablecategory'>" + infoCategories + "</div></p></td></tr>";
+                cellCategory.innerHTML = "<td><p><div id='tablecategory'>" + infoCategories + "</div></p></td>";
             }
             
             requestCategories.send();
 
             // Muestro la primer imagen disponible de todas
-            cellPicture.innerHTML = "<tr><td><p><img id='productimage' src='" + articulo.pictures[0].secure_url + "'></img></p></td></tr>";
+            cellPicture.innerHTML = "<td><p><img id='productimage' src='" + articulo.pictures[0].secure_url + "'></img></p></td>";
 
             // Obtengo la condición del producto
             var infoCondition = '';
@@ -51,13 +53,11 @@ function product_ML(productID) {
                   }
                 }
 
-            cellCondition.innerHTML = "<tr>" + 
-                              "<td><table>" +
-                                "<tr><td><p><div id='tablecondition'>" + infoCondition + " - " + articulo.sold_quantity + " vendidos</div></p></td></tr>" + 
+            cellCondition.innerHTML = "<td><table><p><div id='tablecondition'>" + infoCondition + " - " + articulo.sold_quantity + " vendidos</div></p></td></tr>" + 
                                 "<tr><td><p><div id='tableconditiontitle'>" + articulo.title + "</div></p></td></tr>" + 
                                 "<tr><td><p><div id='tableconditionprice'>$ " + articulo.price + "</div></p></td></tr>" + 
                                 "<tr><td><p><img src='Assets/ComprarML.jpg'></img></p></td></tr>" + 
-                              "</table></td></tr>"
+                              "</table></td>"
 
             // Obtengo la descripción del producto
             var pathRequestDescripcion = 'https://api.mercadolibre.com/items/';
@@ -65,8 +65,8 @@ function product_ML(productID) {
                 requestDescription.open('GET', pathRequestDescripcion.concat(articulo.id, "/description"), true);
                 requestDescription.onload = function () {
                     var dataDescription = JSON.parse(this.response || '{}');
-                    cellDesc.innerHTML = "<tr><td><p><div id='descriptiontitle'>Descripci&oacuten del producto</div></p></td></tr>" + 
-                      "<tr><td><p><div id='descriptionbody'>" + dataDescription.plain_text + "</div></p></td></tr>"
+                    cellDesc.innerHTML = "<td><p><div id='descriptiontitle'>Descripci&oacuten del producto</div></p></td>" + 
+                      "<td><p><div id='descriptionbody'>" + dataDescription.plain_text + "</div></p></td>"
                 }
                 requestDescription.send(); 
 
@@ -79,14 +79,3 @@ function product_ML(productID) {
 
     request.send();
 } 
-
-// Función obtenida de https://css-tricks.com/snippets/javascript/get-url-variables/
-function getQueryVariable(variable) {
-    var query = window.location.search.substring(1);
-    var vars = query.split("&");
-    for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split("=");
-        if (pair[0] == variable) { return pair[1]; }
-    }
-    return (false);
-}

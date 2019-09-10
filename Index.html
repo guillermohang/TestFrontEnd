@@ -6,30 +6,37 @@
 	<link rel="stylesheet" type="text/css" href="./style.css"> 
 </head> 
 
-<body> 
+<body onload="search_ML(getQueryVariable('id'))">
     <header id="main-header">
-        <img id="image_logo" src='Assets/Logo_ML.png'></img>
-        <input id="searchbar" type="text" name="search" placeholder="Nunca dejes de buscar"></input>
-        <button id="submitButton" onClick="search_ML()"><img src="Assets/ic_Search@2x.png.png"/></button>
+        <div class="searchbar">
+            <div>
+                <div>
+                    <img id="image_logo" src='Assets/Logo_ML.png'></img>
+                    <input id="searchbar" type="text" name="search" placeholder="Nunca dejes de buscar" />
+                    <div><img id="submitButton" onClick="openSearchPage()" src="Assets/ic_Search@2x.png.png" /></div>
+                </div>
+            </div>
+        </div>
     </header>
 
     <div id="root"></div>
-   
-    <table id="tablecreate"> 
-        <tr></tr> 
-    </table> 
+
+    <table id="tablecreate">
+        <tr></tr>
+    </table>
 
     <script src="searchML.js"></script>
-    
+    <script src="Parameters.js"></script>
+
     <script>
         var input = document.getElementById("searchbar");
-        input.addEventListener("keyup", function(event) {
-          if (event.keyCode === 13) {
-           event.preventDefault();
-           document.getElementById("submitButton").click();
-          }
+        input.addEventListener("keyup", function (event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById("submitButton").click();
+            }
         });
-        </script>
+    </script>
 </body>  
 
 </html> 
